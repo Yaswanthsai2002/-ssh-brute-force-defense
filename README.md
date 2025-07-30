@@ -1,46 +1,29 @@
-# 🔐 SSH Brute-Force Defense on Ubuntu Server
+# 🚨 Brute Force Attack: Security Assessment & Response on CentOS VM
 
-This project simulates **SSH brute-force attacks** and showcases a layered defense strategy using **Fail2Ban** on an Ubuntu server.  
-It mimics real-world threat scenarios and blue-team incident response.
+This project simulates a **real-world brute force attack** on a CentOS VM and walks through a step-by-step **incident response** and **hardening strategy** to prevent future attacks. It includes log analysis, user verification, SSH hardening, Fail2Ban setup, MFA, and continuous monitoring.
 
 ---
 
 ## 🎯 Objective
 
-To detect, prevent, and mitigate SSH brute-force login attempts using:
-- Fail2Ban
-- UFW Firewall
-- Log Monitoring (auth.log)
+- Detect unauthorized SSH login attempts.
+- Analyze logs and identify targeted usernames.
+- Implement hardened configurations and active defenses.
+- Set up real-time monitoring to track future incidents.
 
 ---
 
-## 🏗️ Lab Setup
+## 📋 Prerequisites
 
-| Component        | Configuration         |
-|------------------|------------------------|
-| OS               | Ubuntu 22.04 LTS       |
-| SSH Service      | OpenSSH Server         |
-| Tool Used        | Hydra (for attack simulation) |
-| Defense Tool     | Fail2Ban + UFW         |
+- ✅ Linux System Administration (CentOS/RHEL)
+- ✅ Bash Scripting & Log Analysis
+- ✅ Basic Networking & Security
+- ✅ Incident Response Concepts
 
 ---
 
-## ⚙️ Steps Performed
+## 🔍 Log Analysis & User Verification
 
-1. 📥 Installed & configured OpenSSH and Fail2Ban
-2. 🔐 Created jail for SSHD with `maxretry=3`, `bantime=3600`
-3. 🧪 Simulated brute-force using THC-Hydra
-4. 🔍 Monitored logs using `tail -f /var/log/auth.log`
-5. 🔥 Automatically banned attacker IP using Fail2Ban
-6. 📊 Verified ban using `iptables -L`
-
----
-
-## 🖼️ Screenshots
-
-> Add screenshots of Hydra brute-force, Fail2Ban bans, UFW logs, and jail config
-
----
-
-## 📁 Directory Structure
-
+### 📁 Step 1: View Authentication Logs
+```bash
+sudo grep "Failed password" /var/log/secure
